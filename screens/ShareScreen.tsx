@@ -9,35 +9,14 @@ import Share from 'react-native-share';
 
 export default function ShareScreen({ navigation }) {
 
-    const [showInstagramStory, setShowInstagramStory] = useState(false);
-
-    const viewRef = useRef();
-    const shareImage = async () => {
-        try {
-            console.log('hi');
-            const uri = await viewRef.current.capture();
-            Share.open({ url: uri })
-            console.log(uri)
-        } catch (e) {
-            console.error(e)
-        }
-
-    }
-
-    const handleOnPress = () => {
-        shareImage()
-    }
-
     return (
-        <ViewShot ref={viewRef}>
-            <ImageBackground source={require('./../assets/Share-img.png')} resizeMode="cover" style={{ width: '100%', height: '100%' }}>
-                <View style={styles.view}>
-                    <Text style={styles.text}>Carl has decided the following</Text>
-                    <ShareScreenCard />
-                </View>
-                <Button title="test" onPress={handleOnPress} />
-            </ImageBackground>
-        </ViewShot>
+        <ImageBackground source={require('./../assets/Share-img.png')} resizeMode="cover" style={{ width: '100%', height: '100%' }}>
+            <View style={styles.view}>
+                <Text style={styles.text}>Carl has decided the following</Text>
+                <ShareScreenCard />
+            </View>
+            <Button title="test" onPress={handleOnPress} />
+        </ImageBackground>
     );
 }
 
