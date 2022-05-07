@@ -1,49 +1,32 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, SafeAreaView, Share, StyleSheet, Text, TextInput, View } from 'react-native';
+import Generating from './screens/Generating';
+import Landing from './screens/Landing';
+import Home from './screens/Landing';
+import Results from './screens/Results';
+import Setup from './screens/Setup';
+import Persons from './screens/Setup';
+import ShareScreen from './screens/ShareScreen';
+import Survey from './screens/Survey';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [personName, setPersonName] = useState('');
-  const [persons, setPersons] = useState([{
-    'name': 'John doe'
-  }, {
-    'name': 'Jane dora'
-  }]);
-
-  const handleOnPress = () => {
-    setPersons([...persons, { name: personName }]);
-    setPersonName('');
-  }
-
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setPersonName(text)}
-          value={personName}
-          placeholder="useless placeholder"
-        />
-      </SafeAreaView>
-      <Button
-        onPress={handleOnPress}
-        title="Add person"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      {persons.map((item, index) => {
-        return <Text>{item.name}</Text>
-      })}
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Landing" component={Landing} />
+        <Stack.Screen name="Setup" component={Setup} />
+        <Stack.Screen name="Generating" component={Generating} />
+        <Stack.Screen name="Results" component={Results} />
+        <Stack.Screen name="ShareScreen" component={ShareScreen} />
+        <Stack.Screen name="Survey" component={Survey} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFF00',
-    padding: 50
-  },
-  input: {
-    backgroundColor: 'white',
-    width: '100%',
-  }
-});
+const styles = StyleSheet.create({});
