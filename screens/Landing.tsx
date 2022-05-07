@@ -16,7 +16,7 @@ export default function Home({ navigation }) {
             />
             <Button
                 title="Continue as a guest"
-                onPress={() => navigation.navigate('Setup')}
+                onPress={() => navigation.navigate('ShareScreen')}
             />
         </View>
     );

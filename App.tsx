@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, SafeAreaView, Share, StyleSheet, Text, TextInput, View } from 'react-native';
+import Drink from './screens/Drink';
 import Generating from './screens/Generating';
 import Landing from './screens/Landing';
 import Home from './screens/Landing';
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name="Landing" component={Landing} />
         <Stack.Screen name="Setup" component={Setup} />
         <Stack.Screen name="Generating" component={Generating} />
+        <Stack.Screen name="Drink" component={Drink} />
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="ShareScreen" component={ShareScreen} />
         <Stack.Screen name="Survey" component={Survey} />

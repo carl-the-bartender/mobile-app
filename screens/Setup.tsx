@@ -31,7 +31,11 @@ export default function Setup({ navigation }) {
 
             <Button
                 title="Generate drinks"
-                onPress={() => console.log(persons)}
+                onPress={() =>
+                    navigation.navigate('Generating', {
+                        persons: persons
+                    })
+                }
             />
         </View>
     );
