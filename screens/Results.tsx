@@ -3,14 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function Home({ navigation }) {
+export default function Results({ navigation }) {
 
     return (
         <View>
-            <Text>Home</Text>
+            <Text>Results</Text>
             <Button
-                title="Go to persons"
-                onPress={() => navigation.navigate('Persons')}
+                title="Go to share"
+                onPress={() => navigation.navigate('ShareScreen')}
             />
         </View>
     );

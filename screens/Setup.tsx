@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function App() {
+export default function Setup({ navigation }) {
     const [personName, setPersonName] = useState('');
     const [persons, setPersons] = useState([{
         'name': 'John doe'
@@ -18,6 +18,11 @@ export default function App() {
 
     return (
         <View style={styles.container}>
+            <Text>Setup</Text>
+            <Button
+                title="Go to generating"
+                onPress={() => navigation.navigate('Generating')}
+            />
             <SafeAreaView>
                 <TextInput
                     style={styles.input}
@@ -41,7 +46,6 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#FFFF00',
-        padding: 50
     },
     input: {
         backgroundColor: 'white',
