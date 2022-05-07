@@ -2,53 +2,48 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
+import { AddPerson } from '../components/AddPerson';
+import { PlayerPreference } from '../components/PlayerPreference';
 
 export default function Setup({ navigation }) {
-    const [personName, setPersonName] = useState('');
-    const [persons, setPersons] = useState([{
-        'name': 'John doe'
-    }, {
-        'name': 'Jane dora'
-    }]);
+    const [persons, setPersons] = useState([]);
 
-    const handleOnPress = () => {
-        setPersons([...persons, { name: personName }]);
-        setPersonName('');
+    const handleOnPress = (personName) => {
+        setPersons([...persons, { name: personName, option: '' }]);
+    }
+
+    const onValueChange = (personName, personOption) => {
+        let index = persons.findIndex((item => item.name == personName));
+        persons[index].option = personOption
+        setPersons([...persons]);
     }
 
     return (
         <View style={styles.container}>
-            <Text>Setup</Text>
-            <Button
-                title="Go to generating"
-                onPress={() => navigation.navigate('Generating')}
-            />
-            <SafeAreaView>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={text => setPersonName(text)}
-                    value={personName}
-                    placeholder="useless placeholder"
-                />
-            </SafeAreaView>
-            <Button
-                onPress={handleOnPress}
-                title="Add person"
-                accessibilityLabel="Learn more about this purple button"
-            />
+            <Text style={styles.heading}>Preferences</Text>
+
+            <AddPerson handleOnPress={handleOnPress} />
+
             {persons.map((item, index) => {
-                return <Text>{item.name}</Text>
+                return <PlayerPreference name={item.name} onValueChange={onValueChange} />
             })}
+
+            <Button
+                title="Generate drinks"
+                onPress={() => console.log(persons)}
+            />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFFF00',
+        padding: 20
     },
-    input: {
-        backgroundColor: 'white',
-        width: '100%',
-    }
+    heading: {
+        fontSize: 32,
+        textAlign: 'center',
+        margin: 20
+    },
 });

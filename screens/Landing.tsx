@@ -1,15 +1,21 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, TextInput, View, Image } from 'react-native';
 
 export default function Home({ navigation }) {
 
     return (
-        <View>
-            <Text>Landing</Text>
+        <View style={styles.container}>
+            <Text style={styles.heading}>Carl The Bartender</Text>
+            <Image style={styles.image} source={require('./../assets/carl.jpeg')} />
             <Button
-                title="Go to setup"
+                disabled={true}
+                title="Continue with Instagram"
+                onPress={() => navigation.navigate('Setup')}
+            />
+            <Button
+                title="Continue as a guest"
                 onPress={() => navigation.navigate('Setup')}
             />
         </View>
@@ -17,5 +23,16 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        padding: 20
+    },
+    heading: {
+        fontSize: 32,
+        textAlign: 'center',
+        margin: 20
+    },
+    image: {
+        margin: 20,
+        width: 100
+    }
 });
