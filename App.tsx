@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -16,24 +17,26 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <SafeAreaView>
-        <TextInput
-          style={styles.input}
-          onChangeText={text => setPersonName(text)}
-          value={personName}
-          placeholder="useless placeholder"
+    <NavigationContainer>
+      <View style={styles.container}>
+        <SafeAreaView>
+          <TextInput
+            style={styles.input}
+            onChangeText={text => setPersonName(text)}
+            value={personName}
+            placeholder="useless placeholder"
+          />
+        </SafeAreaView>
+        <Button
+          onPress={handleOnPress}
+          title="Add person"
+          accessibilityLabel="Learn more about this purple button"
         />
-      </SafeAreaView>
-      <Button
-        onPress={handleOnPress}
-        title="Add person"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      {persons.map((item, index) => {
-        return <Text>{item.name}</Text>
-      })}
-    </View>
+        {persons.map((item, index) => {
+          return <Text>{item.name}</Text>
+        })}
+      </View>
+    </NavigationContainer>
   );
 }
 
